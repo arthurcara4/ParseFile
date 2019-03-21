@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- A estrutura do xml sempre é apresentada abaixo (independente da quantidade de layoutes que o xml contenha): --> 
+<!-- tag root grupo de layouts -->
+<layouts>
+ 	<!-- <layout>  : identifica o layout do arquivo
+              atributos: id              - (obrigatório) id do layout (único)
+                         identificadores - esse atributo identifica a(s) coluna(s) que identifica o tipo do registro
+                                           pode se informar uma unica coluna ou uma chave composta, ou a combinação de ambas
+                                           por exemplo:
+                                             se for informado (1:2) significa que a coluna de tipo está na posição 1 com o tamanho de 2 da linha
+                                             se for informado (1:2+7:3) significa que a coluna de tipo é a combinação da posição 1 com o tamanho de 2 
+                                                              concatenada com a posição 7 tamanho de 3
+                                             se for informato (1:2|1:2+7:3) siginifica que primeiro verificará se existe o tipo 1:2, caso
+                                                               não encontre esse tipo no layout verifica o outro tipo 1:2+7:3
+                                             podem ser feitas quantas combinações forem necessárias. Mas geralmente uma coluna é o suficiente
+ 	 -->
+	<layout id="arquivo1" identificadores="1:2">
+	
+	
+	
+	 	<!--  <linha>  : tipos de linhas do layout
+	              atributos: id   - (obrigatório) id da linha (único)
+	                         tipo - identifica o tipo da linha 
+	                                esse é o valor que será procurado pelo atributo <identificadores> da tag <layout>
+	 	 -->
+		<linha id="header01" tipo="01">
+		
+		
+		
+		
+		 	<!--  <coluna> : colunas da linha
+		              atributos: id        - (obrigatório) id da coluna (único)
+		                         tipo      - (obrigatório) identifica o tipo da coluna
+		                                     só pode conter os valores NUMERICO, ALFA e DATA 
+		                         tamanho   - (obrigatório) tamanho da coluna no layout
+		                         posini    - posição inicial da coluna
+		                                     se não for informada as colunas devem estar dispostas em ordem no xml
+		                                     pois a posini será calculada de acordo com o tamanho
+		                         descricao - um descritivo para a coluna
+		                         default   - valor default para a coluna (utilizado para geração de arquivo)
+		                         pad       - caractere que será urilizado no pad do conteudo ex: pad="0", pad=" ", pad="X"
+		                         padside   - lado que será preenchido pelo pad
+		                                     só pode conter os valores (ESQUERDA ou DIRETA)
+		                         formato   - formato da coluna (para tipo DATA é obrigatório)
+		                                     serão aceitas a combinações dos tipos abaixo (case sensitive)
+		                                         d - dia
+		                                         M - mes
+		                                         y - ano
+		                                         H - hora
+		                                         m - minuto
+		                                         s - segundo
+		                                     ex: yyyyMMddHHmmss
+		                         dominio   - define um dominio de valores que essa coluna pode conter
+		                                     podem ser valores específicos, separados por virgula (,)
+		                                     e/ou intervalos separados por hífen (-)
+		                                     ex: 0-5,12-15,19,22,34
+		                                         essa coluna só poderá conter os valores de 0 a 5, 12 a 15, 19, 22 ou 34
+		                                         
+		                                         SIM,NAO,TALVEZ
+		                                         essa coluna só podera conter os valores SIM, NAO ou TALVEZ
+		                                         OBS: para strings o hifen (-) NÃO funciona, somente para numeros
+		                         obrigatorio - verifica se o campo está vazio ou ignora essa condição
+		                                     só pode conter os valores (true ou false)
+		                                     ex: se estiver true faz a verificação e acusa o erro
+		                                         se estiver false ignora se o campo está vazio
+		                                     para NUMERICO e DATA o default é false e para ALFA é true
+		                         decimais  - numero de decimais da coluna (somente NUMERICO e utilizado na geração de arquivo)
+		                                     ex:caso seja passado decimais="3" e na geração seja passado um valor "12,1" monta
+		                                        a coluna com o valor "12100"
+		                         uppercase - converte o valor para UPPERCASE
+		                                     só pode conter os valores (true ou false) default é false
+		                         lowercase - converte o valor para LOWERCASE
+		                                     só pode conter os valores (true ou false) default é false
+		                                     
+		 	 -->
+			<coluna tipo="NUMERICO" id="idReg"               tamanho="2"   descricao="Identificação do registro"                               default="01"/>
+		</linha>
+	</layout>
+</layouts>        
+    
